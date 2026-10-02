@@ -1,0 +1,83 @@
+{
+  "url": "https://api.imd.fun/requests/check",
+  "checkedAt": "2026-10-02T23:57:15.411Z",
+  "status": 200,
+  "request": {
+    "action": "oracle.request",
+    "input": {
+      "question": "For the one-hour Ethereum mainnet block window ending at this request's pinned head, how many logs emitted by IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 match Transfer(address indexed from, address indexed to, uint256 value)? Count each matching log once, including zero-value transfers; the answer is 0 if no logs match.",
+      "panelSize": 5,
+      "answerType": "uint256",
+      "evidence": "chain",
+      "chainId": 1
+    }
+  },
+  "response": {
+    "action": "oracle.request",
+    "request": {
+      "v": 1,
+      "question": "For the one-hour Ethereum mainnet block window ending at this request's pinned head, how many logs emitted by IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 match Transfer(address indexed from, address indexed to, uint256 value)? Count each matching log once, including zero-value transfers; the answer is 0 if no logs match.",
+      "chainId": 1,
+      "window": {
+        "hours": 24
+      },
+      "answerType": "uint256",
+      "evidence": "chain",
+      "panelSize": 5,
+      "quorum": 4,
+      "validForSeconds": 86400
+    },
+    "proposed": {
+      "answerType": {
+        "value": "uint256",
+        "confidence": 1
+      },
+      "evidence": {
+        "value": "chain",
+        "confidence": 1
+      },
+      "chainId": {
+        "value": 1,
+        "confidence": 1
+      },
+      "toleranceBps": {
+        "value": 0,
+        "confidence": 0.79
+      },
+      "head": {
+        "value": 1,
+        "confidence": 1
+      }
+    },
+    "judged": true,
+    "blockers": [],
+    "suggestions": [],
+    "online": 544,
+    "limits": {
+      "minPanelSize": 5,
+      "maxPanelSize": 100
+    },
+    "chains": [
+      {
+        "id": 1,
+        "name": "Ethereum mainnet"
+      },
+      {
+        "id": 56,
+        "name": "BNB Chain"
+      },
+      {
+        "id": 4663,
+        "name": "Robinhood Chain"
+      },
+      {
+        "id": 8453,
+        "name": "Base"
+      },
+      {
+        "id": 42161,
+        "name": "Arbitrum One"
+      }
+    ]
+  }
+}

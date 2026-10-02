@@ -1,0 +1,85 @@
+{
+  "url": "https://api.imd.fun/requests/check",
+  "checkedAt": "2026-10-02T23:57:19.746Z",
+  "status": 200,
+  "request": {
+    "action": "oracle.request",
+    "input": {
+      "question": "At Ethereum mainnet Uniswap v4 PoolManager 0x000000000004444c5dc75cb358380d2e3de08a90, consider every PoolId whose PoolKey contains WETH 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. For each PoolId, sum the absolute WETH-side amount0 or amount1 from every Swap(bytes32,address,int128,int128,uint160,uint128,uint24) event in the 24-hour block window ending at this request's pinned head. The unit is wei. Which PoolId has the largest sum? Return a bytes32[] containing that one PoolId; break ties by the numerically lowest PoolId, and return [] if no pool qualifies.",
+      "panelSize": 10,
+      "answerType": "bytes32[]",
+      "evidence": "chain",
+      "chainId": 1,
+      "head": 1
+    }
+  },
+  "response": {
+    "action": "oracle.request",
+    "request": {
+      "v": 1,
+      "question": "At Ethereum mainnet Uniswap v4 PoolManager 0x000000000004444c5dc75cb358380d2e3de08a90, consider every PoolId whose PoolKey contains WETH 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. For each PoolId, sum the absolute WETH-side amount0 or amount1 from every Swap(bytes32,address,int128,int128,uint160,uint128,uint24) event in the 24-hour block window ending at this request's pinned head. The unit is wei. Which PoolId has the largest sum? Return a bytes32[] containing that one PoolId; break ties by the numerically lowest PoolId, and return [] if no pool qualifies.",
+      "chainId": 1,
+      "window": {
+        "hours": 24
+      },
+      "answerType": "bytes32[]",
+      "evidence": "chain",
+      "panelSize": 10,
+      "quorum": 7,
+      "validForSeconds": 86400,
+      "head": 1
+    },
+    "proposed": {
+      "answerType": {
+        "value": "bytes32[]",
+        "confidence": 0.27
+      },
+      "evidence": {
+        "value": "chain",
+        "confidence": 1
+      },
+      "chainId": {
+        "value": 1,
+        "confidence": 0.99
+      },
+      "toleranceBps": {
+        "value": 0,
+        "confidence": 0.57
+      },
+      "head": {
+        "value": 1,
+        "confidence": 1
+      }
+    },
+    "judged": true,
+    "blockers": [],
+    "suggestions": [],
+    "online": 544,
+    "limits": {
+      "minPanelSize": 5,
+      "maxPanelSize": 100
+    },
+    "chains": [
+      {
+        "id": 1,
+        "name": "Ethereum mainnet"
+      },
+      {
+        "id": 56,
+        "name": "BNB Chain"
+      },
+      {
+        "id": 4663,
+        "name": "Robinhood Chain"
+      },
+      {
+        "id": 8453,
+        "name": "Base"
+      },
+      {
+        "id": 42161,
+        "name": "Arbitrum One"
+      }
+    ]
+  }
+}

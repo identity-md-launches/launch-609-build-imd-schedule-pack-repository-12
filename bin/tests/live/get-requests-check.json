@@ -1,0 +1,6 @@
+{
+  "url": "https://api.imd.fun/requests/check",
+  "checkedAt": "2026-10-02T23:55:45.595Z",
+  "status": 401,
+  "body": "{\"error\":\"request_token_required\"}"
+}

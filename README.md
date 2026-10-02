@@ -113,16 +113,25 @@ at least 3 seconds apart. Bodies are sent about 2 seconds apart to stay under th
 | `localProblems` | Anything `npm run validate` objected to |
 
 Each `oracleDraftChecks` entry records the short draft input, HTTP status, blockers,
-suggestions, and raw live response body.
+suggestions, verdict, and live response body. Draft requests, including retries and the
+first draft after the schedule checks, wait at least 3.5 seconds.
 
 The top level records the API used, the time of the run, `network` (`reached`, or
-`unreachable` when no body got an answer) and a count of each verdict. The committed
+`unreachable` when no body got an answer) and a count of each verdict (with separate `draftAccepted`, `draftBlocked`,
+`draftRefused`, and `draftUnreachable` counts). The committed
 `results.json` contains accepted live `schedule.create` checks for all 12 bodies and draft
 checks for all six oracle questions with no `wording` or `not_answerable` suggestions.
+The live wording screen can vary: the first revision run suggested wording changes for
+body 05, while the unchanged repeat saved here did not. Both responses are retained.
 
-The script exits 1 when a body fails local validation or the API blocks or refuses one, and
-0 otherwise. An unreachable network alone does not fail it, because that is recorded in
-`results.json` instead.
+The script exits 1 when a body fails local validation, the API blocks or refuses a schedule
+or draft, or a draft remains unreachable after retries, and 0 otherwise. Unreachable
+schedule checks alone retain their existing non-failing behavior.
+
+Run `node bin/tests/check.test.mjs` for payload, failure-handling, and pacing regression
+checks, and `node bin/tests/live.test.mjs` to inspect the saved draft responses.
+Saved live GET responses and draft POST bodies are next to those tests in
+`bin/tests/live/`.
 
 ## Using a body
 

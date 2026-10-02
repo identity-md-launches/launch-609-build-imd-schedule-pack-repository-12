@@ -1,0 +1,83 @@
+{
+  "url": "https://api.imd.fun/requests/check",
+  "checkedAt": "2026-10-02T23:57:28.634Z",
+  "status": 200,
+  "request": {
+    "action": "oracle.request",
+    "input": {
+      "question": "As of now (the timestamp of this request's pinned Ethereum mainnet head block), did ethereum/go-ethereum publish at least one stable release on its public GitHub Releases page during the previous 24 hours? A stable release has draft=false and prerelease=false and a published_at time in that interval.",
+      "panelSize": 5,
+      "answerType": "bool",
+      "evidence": "panel",
+      "chainId": 1
+    }
+  },
+  "response": {
+    "action": "oracle.request",
+    "request": {
+      "v": 1,
+      "question": "As of now (the timestamp of this request's pinned Ethereum mainnet head block), did ethereum/go-ethereum publish at least one stable release on its public GitHub Releases page during the previous 24 hours? A stable release has draft=false and prerelease=false and a published_at time in that interval.",
+      "chainId": 1,
+      "window": {
+        "hours": 24
+      },
+      "answerType": "bool",
+      "evidence": "panel",
+      "panelSize": 5,
+      "quorum": 4,
+      "validForSeconds": 86400
+    },
+    "proposed": {
+      "answerType": {
+        "value": "bool",
+        "confidence": 1
+      },
+      "evidence": {
+        "value": "panel",
+        "confidence": 0.98
+      },
+      "chainId": {
+        "value": 1,
+        "confidence": 0.99
+      },
+      "toleranceBps": {
+        "value": 0,
+        "confidence": 0.82
+      },
+      "head": {
+        "value": 1,
+        "confidence": 0.96
+      }
+    },
+    "judged": true,
+    "blockers": [],
+    "suggestions": [],
+    "online": 544,
+    "limits": {
+      "minPanelSize": 5,
+      "maxPanelSize": 100
+    },
+    "chains": [
+      {
+        "id": 1,
+        "name": "Ethereum mainnet"
+      },
+      {
+        "id": 56,
+        "name": "BNB Chain"
+      },
+      {
+        "id": 4663,
+        "name": "Robinhood Chain"
+      },
+      {
+        "id": 8453,
+        "name": "Base"
+      },
+      {
+        "id": 42161,
+        "name": "Arbitrum One"
+      }
+    ]
+  }
+}

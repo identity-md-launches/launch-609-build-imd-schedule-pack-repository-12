@@ -1,0 +1,83 @@
+{
+  "url": "https://api.imd.fun/requests/check",
+  "checkedAt": "2026-10-02T23:57:06.839Z",
+  "status": 200,
+  "request": {
+    "action": "oracle.request",
+    "input": {
+      "question": "In the one-hour Ethereum mainnet block window ending at this request's pinned head, what is the sum, in raw IMD base units (18 decimals), of the value field in Transfer logs emitted by token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 whose to address is 0x0000000000000000000000000000000000000000?",
+      "panelSize": 5,
+      "answerType": "uint256",
+      "evidence": "chain",
+      "chainId": 1
+    }
+  },
+  "response": {
+    "action": "oracle.request",
+    "request": {
+      "v": 1,
+      "question": "In the one-hour Ethereum mainnet block window ending at this request's pinned head, what is the sum, in raw IMD base units (18 decimals), of the value field in Transfer logs emitted by token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 whose to address is 0x0000000000000000000000000000000000000000?",
+      "chainId": 1,
+      "window": {
+        "hours": 24
+      },
+      "answerType": "uint256",
+      "evidence": "chain",
+      "panelSize": 5,
+      "quorum": 4,
+      "validForSeconds": 86400
+    },
+    "proposed": {
+      "answerType": {
+        "value": "uint256",
+        "confidence": 1
+      },
+      "evidence": {
+        "value": "chain",
+        "confidence": 1
+      },
+      "chainId": {
+        "value": 1,
+        "confidence": 1
+      },
+      "toleranceBps": {
+        "value": 0,
+        "confidence": 0.64
+      },
+      "head": {
+        "value": 1,
+        "confidence": 1
+      }
+    },
+    "judged": true,
+    "blockers": [],
+    "suggestions": [],
+    "online": 544,
+    "limits": {
+      "minPanelSize": 5,
+      "maxPanelSize": 100
+    },
+    "chains": [
+      {
+        "id": 1,
+        "name": "Ethereum mainnet"
+      },
+      {
+        "id": 56,
+        "name": "BNB Chain"
+      },
+      {
+        "id": 4663,
+        "name": "Robinhood Chain"
+      },
+      {
+        "id": 8453,
+        "name": "Base"
+      },
+      {
+        "id": 42161,
+        "name": "Arbitrum One"
+      }
+    ]
+  }
+}

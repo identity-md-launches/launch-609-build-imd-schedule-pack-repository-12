@@ -1,0 +1,6 @@
+{
+  "url": "https://api.imd.fun/",
+  "checkedAt": "2026-10-02T23:55:45.430Z",
+  "status": 404,
+  "body": "{\"message\":\"Route GET:/ not found\",\"error\":\"Not Found\",\"statusCode\":404}"
+}

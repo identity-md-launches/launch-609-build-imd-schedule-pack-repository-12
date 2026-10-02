@@ -42,9 +42,10 @@ Options:
   --api <url>   API origin (default ${DEFAULT_API}, or $IMD_API)
 
 The check is free and holds no price. Each body is retried up to ${MAX_RETRIES} times,
-${RETRY_DELAY_MS / 1000} seconds apart, on network errors, timeouts, 429 and 5xx. If the API
+${RETRY_DELAY_MS / 1000} seconds apart (3.5 for oracle drafts), on network errors, timeouts, 429 and 5xx. If the API
 cannot be reached, results.json records "unreachable" and the error instead of a verdict.
-Exit code: 0 when every body passed local validation and none was blocked or refused.`;
+Exit code: 0 when every body passed local validation, none was blocked or refused,
+and no oracle draft was unreachable.`;
 
 // ---------- documented limits ----------
 
@@ -235,15 +236,15 @@ function table(items) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function checkOne(api, body) {
+async function checkOne(api, payload) {
   let lastError = null;
   for (let attempt = 1; attempt <= 1 + MAX_RETRIES; attempt++) {
-    if (attempt > 1) await sleep(RETRY_DELAY_MS);
+    if (attempt > 1) await sleep(payload.action === "oracle.request" ? ORACLE_DRAFT_PACE_MS : RETRY_DELAY_MS);
     try {
       const res = await fetch(`${api}/requests/check`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ action: "schedule.create", input: body }),
+        body: JSON.stringify(payload),
         signal: AbortSignal.timeout(TIMEOUT_MS),
       });
       const text = await res.text();
@@ -271,7 +272,7 @@ async function runChecks(api, items) {
   const results = [];
   for (const [n, { file, body, problems }] of items.entries()) {
     if (n > 0) await sleep(PACE_MS);
-    const r = await checkOne(api, body);
+    const r = await checkOne(api, { action: "schedule.create", input: body });
     const verdict = verdictOf(r);
     const entry = {
       file, label: body.label, action: body.action, runs: body.runs,
@@ -296,12 +297,13 @@ async function runChecks(api, items) {
 async function runOracleDraftChecks(api, items) {
   const drafts = items.filter(({ body }) => body?.action === "oracle.request").slice(0, 6);
   const results = [];
-  for (const [n, { file, body }] of drafts.entries()) {
-    if (n > 0) await sleep(ORACLE_DRAFT_PACE_MS);
+  for (const { file, body } of drafts) {
+    await sleep(ORACLE_DRAFT_PACE_MS);
     const input = Object.fromEntries(["question", "panelSize", "answerType", "evidence", "chainId", "head"]
       .filter((key) => body.input[key] !== undefined).map((key) => [key, body.input[key]]));
     const r = await checkOne(api, { action: "oracle.request", input });
-    const entry = { file, action: "oracle.request", checkedAt: new Date().toISOString(), attempts: r.attempts, input };
+    const verdict = verdictOf(r);
+    const entry = { file, verdict, action: "oracle.request", checkedAt: new Date().toISOString(), attempts: r.attempts, input };
     if (r.error) Object.assign(entry, { error: r.error, blockers: [], suggestions: [] });
     else {
       entry.httpStatus = r.status;
@@ -315,7 +317,7 @@ async function runOracleDraftChecks(api, items) {
         entry.liveResponseBody = r.text;
       }
     }
-    console.log(`${r.error ? "unreachable" : "draft-checked".padEnd(11)} ${file}`);
+    console.log(`${verdict.padEnd(11)} ${file} (draft)`);
     results.push(entry);
   }
   return results;
@@ -356,21 +358,25 @@ async function main(argv) {
   console.log(`\nChecking ${Math.min(6, items.filter(({ body }) => body?.action === "oracle.request").length)} oracle drafts (at least ${ORACLE_DRAFT_PACE_MS / 1000}s apart) ...`);
   const oracleDraftChecks = await runOracleDraftChecks(api, checkable);
   const count = (v) => results.filter((r) => r.verdict === v).length;
+  const draftCount = (v) => oracleDraftChecks.filter((r) => r.verdict === v).length;
   const summary = {
     accepted: count("accepted"), blocked: count("blocked"), refused: count("refused"), unreachable: count("unreachable"),
+    draftAccepted: draftCount("accepted"), draftBlocked: draftCount("blocked"),
+    draftRefused: draftCount("refused"), draftUnreachable: draftCount("unreachable"),
   };
   const out = {
     tool: "imd-schedule-pack bin/check.mjs",
     api: `${api}/requests/check`,
     checkedAt: new Date().toISOString(),
-    network: summary.unreachable === results.length ? "unreachable" : "reached",
+    network: summary.unreachable + summary.draftUnreachable === results.length + oracleDraftChecks.length ? "unreachable" : "reached",
     summary,
     results,
     oracleDraftChecks,
   };
   writeFileSync(RESULTS_FILE, JSON.stringify(out, null, 2) + "\n");
   console.log(`\n${JSON.stringify(summary)} -> ${relative(process.cwd(), RESULTS_FILE) || "results.json"}`);
-  return localOk && !summary.blocked && !summary.refused ? 0 : 1;
+  return localOk && !summary.blocked && !summary.refused &&
+    !summary.draftBlocked && !summary.draftRefused && !summary.draftUnreachable ? 0 : 1;
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

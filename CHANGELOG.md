@@ -1,5 +1,19 @@
 # Changelog
 
+## Revision — 2026-10-02
+
+- Fixed the request wrapper: schedules send top-level `schedule.create`, while bodies
+  01-06 send top-level `oracle.request` with the six supported draft fields.
+- Added draft verdict counts to the summary and network calculation; blocked, refused,
+  or unreachable drafts now cause a nonzero exit.
+- Applied the 3.5-second draft delay before the first draft and every retry.
+- Added regression checks in `bin/tests/check.test.mjs` and retained live GET responses
+  and draft POST bodies beside them in `bin/tests/live/`; scratch files are not submitted.
+- Regenerated `results.json` using `npm run check` against the live API and re-verified
+  the README claim: all six genuine drafts were judged with no blockers or suggestions.
+  The first run returned a wording suggestion for body 05; the unchanged repeat did not.
+  Both runs are retained (`bin/tests/live/initial-run.json` and the final draft fixtures).
+
 ## 2026-10-02
 
 - Updated `bin/check.mjs` to run standalone `oracle.request` draft checks for oracle bodies 01-06,
@@ -7,9 +21,10 @@
 - Added a 3.5-second delay between consecutive oracle draft check requests and included each draft's
   input, blockers, suggestions, and live response body in `oracleDraftChecks`.
 - Regenerated `results.json` with the checker against the live API: all 12 schedules were accepted,
-  and all six drafts had no suggestions.
+  but the six purported draft responses were malformed schedule checks (corrected above).
 - Made read-only GET requests to the API root and `/requests/check`; the live response bodies used
-  for verification are saved with the scratch checks under `test/scratch/`.
+  for that verification were saved in temporary `test/scratch/` and were not submitted.
+  The revision above retains its evidence under `bin/tests/live/`.
 
 - Draft-checked all six oracle questions through the live `oracle.request` check and recorded
   the requests and responses in `results.json`; each final draft has no `wording` or

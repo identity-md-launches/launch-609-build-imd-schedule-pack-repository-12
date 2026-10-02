@@ -20,6 +20,7 @@ const SUGGESTED_MAX_RUNS = 7;
 const MAX_RETRIES = 3; // after the first attempt, so at most 4 attempts per body
 const RETRY_DELAY_MS = 3000; // at least 3 seconds between attempts
 const PACE_MS = 2100; // the API allows 30 checks a minute per IP
+const ORACLE_DRAFT_PACE_MS = 3500;
 const TIMEOUT_MS = 30000;
 
 const EXPERIMENTAL =
@@ -292,6 +293,34 @@ async function runChecks(api, items) {
   return results;
 }
 
+async function runOracleDraftChecks(api, items) {
+  const drafts = items.filter(({ body }) => body?.action === "oracle.request").slice(0, 6);
+  const results = [];
+  for (const [n, { file, body }] of drafts.entries()) {
+    if (n > 0) await sleep(ORACLE_DRAFT_PACE_MS);
+    const input = Object.fromEntries(["question", "panelSize", "answerType", "evidence", "chainId", "head"]
+      .filter((key) => body.input[key] !== undefined).map((key) => [key, body.input[key]]));
+    const r = await checkOne(api, { action: "oracle.request", input });
+    const entry = { file, action: "oracle.request", checkedAt: new Date().toISOString(), attempts: r.attempts, input };
+    if (r.error) Object.assign(entry, { error: r.error, blockers: [], suggestions: [] });
+    else {
+      entry.httpStatus = r.status;
+      if (r.json) {
+        entry.blockers = r.json.blockers ?? [];
+        entry.suggestions = r.json.suggestions ?? [];
+        entry.liveResponseBody = JSON.stringify(r.json);
+      } else {
+        entry.blockers = [];
+        entry.suggestions = [];
+        entry.liveResponseBody = r.text;
+      }
+    }
+    console.log(`${r.error ? "unreachable" : "draft-checked".padEnd(11)} ${file}`);
+    results.push(entry);
+  }
+  return results;
+}
+
 // ---------- main ----------
 
 async function main(argv) {
@@ -324,6 +353,8 @@ async function main(argv) {
   console.log(`\nChecking ${items.length} bodies against ${api}/requests/check ...`);
   const checkable = items.filter((it) => it.body);
   const results = await runChecks(api, checkable);
+  console.log(`\nChecking ${Math.min(6, items.filter(({ body }) => body?.action === "oracle.request").length)} oracle drafts (at least ${ORACLE_DRAFT_PACE_MS / 1000}s apart) ...`);
+  const oracleDraftChecks = await runOracleDraftChecks(api, checkable);
   const count = (v) => results.filter((r) => r.verdict === v).length;
   const summary = {
     accepted: count("accepted"), blocked: count("blocked"), refused: count("refused"), unreachable: count("unreachable"),
@@ -335,6 +366,7 @@ async function main(argv) {
     network: summary.unreachable === results.length ? "unreachable" : "reached",
     summary,
     results,
+    oracleDraftChecks,
   };
   writeFileSync(RESULTS_FILE, JSON.stringify(out, null, 2) + "\n");
   console.log(`\n${JSON.stringify(summary)} -> ${relative(process.cwd(), RESULTS_FILE) || "results.json"}`);

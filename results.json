@@ -1,7 +1,7 @@
 {
   "tool": "imd-schedule-pack bin/check.mjs",
   "api": "https://api.imd.fun/requests/check",
-  "checkedAt": "2026-10-02T18:24:44.191Z",
+  "checkedAt": "2026-10-02T22:09:41.567Z",
   "network": "reached",
   "summary": {
     "accepted": 12,
@@ -18,7 +18,7 @@
       "costImd": "3.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:15.374Z",
+      "checkedAt": "2026-10-02T22:09:12.578Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -37,7 +37,7 @@
       "costImd": "3.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:18.453Z",
+      "checkedAt": "2026-10-02T22:09:15.465Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -56,7 +56,7 @@
       "costImd": "2.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:21.277Z",
+      "checkedAt": "2026-10-02T22:09:18.723Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -75,7 +75,7 @@
       "costImd": "3.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:24.069Z",
+      "checkedAt": "2026-10-02T22:09:21.640Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -94,7 +94,7 @@
       "costImd": "3.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:26.901Z",
+      "checkedAt": "2026-10-02T22:09:24.551Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -113,7 +113,7 @@
       "costImd": "3.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:29.730Z",
+      "checkedAt": "2026-10-02T22:09:27.387Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -132,7 +132,7 @@
       "costImd": "3.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:32.082Z",
+      "checkedAt": "2026-10-02T22:09:29.762Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -151,7 +151,7 @@
       "costImd": "3.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:34.431Z",
+      "checkedAt": "2026-10-02T22:09:32.112Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -170,7 +170,7 @@
       "costImd": "3.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:36.776Z",
+      "checkedAt": "2026-10-02T22:09:34.454Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -189,7 +189,7 @@
       "costImd": "1.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:39.453Z",
+      "checkedAt": "2026-10-02T22:09:36.821Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -208,7 +208,7 @@
       "costImd": "1.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:41.826Z",
+      "checkedAt": "2026-10-02T22:09:39.185Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -227,7 +227,7 @@
       "costImd": "1.5",
       "localProblems": [],
       "verdict": "accepted",
-      "checkedAt": "2026-10-02T18:24:44.190Z",
+      "checkedAt": "2026-10-02T22:09:41.567Z",
       "attempts": 1,
       "httpStatus": 200,
       "blockers": [],
@@ -237,6 +237,112 @@
       "amount": "1500000000000000000",
       "terms": "Priced per run. Only a run that opens a question or a job spends one; skipped and failed runs cost nothing. Unused runs are not refunded.",
       "amountMatchesTable": true
+    }
+  ],
+  "oracleDraftChecks": [
+    {
+      "file": "bodies/01-hourly-imd-burn-canary.json",
+      "action": "oracle.request",
+      "checkedAt": "2026-10-02T22:08:50.335Z",
+      "attempts": 1,
+      "httpStatus": 200,
+      "input": {
+        "question": "In the one-hour Ethereum mainnet block window ending at this request's pinned head, what is the sum, in raw IMD base units (18 decimals), of the value field in Transfer logs emitted by token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 whose to address is 0x0000000000000000000000000000000000000000?",
+        "panelSize": 5,
+        "answerType": "uint256",
+        "evidence": "chain",
+        "chainId": 1
+      },
+      "blockers": [],
+      "suggestions": [],
+      "liveResponseBody": "{\"action\":\"oracle.request\",\"request\":{\"v\":1,\"question\":\"In the one-hour Ethereum mainnet block window ending at this request's pinned head, what is the sum, in raw IMD base units (18 decimals), of the value field in Transfer logs emitted by token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 whose to address is 0x0000000000000000000000000000000000000000?\",\"chainId\":1,\"window\":{\"hours\":24},\"answerType\":\"uint256\",\"evidence\":\"chain\",\"panelSize\":5,\"quorum\":4,\"validForSeconds\":86400},\"proposed\":{\"answerType\":{\"value\":\"uint256\",\"confidence\":1},\"evidence\":{\"value\":\"chain\",\"confidence\":1},\"chainId\":{\"value\":1,\"confidence\":1},\"toleranceBps\":{\"value\":0,\"confidence\":0.69},\"head\":{\"value\":1,\"confidence\":1}},\"judged\":true,\"blockers\":[],\"suggestions\":[],\"online\":538,\"limits\":{\"minPanelSize\":5,\"maxPanelSize\":100},\"chains\":[{\"id\":1,\"name\":\"Ethereum mainnet\"},{\"id\":56,\"name\":\"BNB Chain\"},{\"id\":4663,\"name\":\"Robinhood Chain\"},{\"id\":8453,\"name\":\"Base\"},{\"id\":42161,\"name\":\"Arbitrum One\"}]}"
+    },
+    {
+      "file": "bodies/02-hourly-weth-wrapped-canary.json",
+      "action": "oracle.request",
+      "checkedAt": "2026-10-02T22:08:06.875Z",
+      "attempts": 1,
+      "httpStatus": 200,
+      "input": {
+        "question": "During the 60 minutes ending at this request's pinned Ethereum mainnet head block, how many wei of ETH were deposited into WETH contract 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2? Compute the total by summing the wad amount in every Deposit event emitted by that contract; the answer is zero if no such event was emitted.",
+        "panelSize": 5,
+        "answerType": "uint256",
+        "evidence": "chain",
+        "chainId": 1
+      },
+      "blockers": [],
+      "suggestions": [],
+      "liveResponseBody": "{\"action\":\"oracle.request\",\"request\":{\"v\":1,\"question\":\"During the 60 minutes ending at this request's pinned Ethereum mainnet head block, how many wei of ETH were deposited into WETH contract 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2? Compute the total by summing the wad amount in every Deposit event emitted by that contract; the answer is zero if no such event was emitted.\",\"chainId\":1,\"window\":{\"hours\":24},\"answerType\":\"uint256\",\"evidence\":\"chain\",\"panelSize\":5,\"quorum\":4,\"validForSeconds\":86400},\"proposed\":{\"answerType\":{\"value\":\"uint256\",\"confidence\":1},\"evidence\":{\"value\":\"chain\",\"confidence\":1},\"chainId\":{\"value\":1,\"confidence\":1},\"toleranceBps\":{\"value\":0,\"confidence\":0.83},\"head\":{\"value\":1,\"confidence\":1}},\"judged\":true,\"blockers\":[],\"suggestions\":[],\"online\":527,\"limits\":{\"minPanelSize\":5,\"maxPanelSize\":100},\"chains\":[{\"id\":1,\"name\":\"Ethereum mainnet\"},{\"id\":56,\"name\":\"BNB Chain\"},{\"id\":4663,\"name\":\"Robinhood Chain\"},{\"id\":8453,\"name\":\"Base\"},{\"id\":42161,\"name\":\"Arbitrum One\"}]}"
+    },
+    {
+      "file": "bodies/03-hourly-imd-transfer-count-canary.json",
+      "action": "oracle.request",
+      "checkedAt": "2026-10-02T22:08:09.711Z",
+      "attempts": 1,
+      "httpStatus": 200,
+      "input": {
+        "question": "For the one-hour Ethereum mainnet block window ending at this request's pinned head, how many logs emitted by IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 match Transfer(address indexed from, address indexed to, uint256 value)? Count each matching log once, including zero-value transfers; the answer is 0 if no logs match.",
+        "panelSize": 5,
+        "answerType": "uint256",
+        "evidence": "chain",
+        "chainId": 1
+      },
+      "blockers": [],
+      "suggestions": [],
+      "liveResponseBody": "{\"action\":\"oracle.request\",\"request\":{\"v\":1,\"question\":\"For the one-hour Ethereum mainnet block window ending at this request's pinned head, how many logs emitted by IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 match Transfer(address indexed from, address indexed to, uint256 value)? Count each matching log once, including zero-value transfers; the answer is 0 if no logs match.\",\"chainId\":1,\"window\":{\"hours\":24},\"answerType\":\"uint256\",\"evidence\":\"chain\",\"panelSize\":5,\"quorum\":4,\"validForSeconds\":86400},\"proposed\":{\"answerType\":{\"value\":\"uint256\",\"confidence\":1},\"evidence\":{\"value\":\"chain\",\"confidence\":1},\"chainId\":{\"value\":1,\"confidence\":1},\"toleranceBps\":{\"value\":0,\"confidence\":0.79},\"head\":{\"value\":1,\"confidence\":1}},\"judged\":true,\"blockers\":[],\"suggestions\":[],\"online\":528,\"limits\":{\"minPanelSize\":5,\"maxPanelSize\":100},\"chains\":[{\"id\":1,\"name\":\"Ethereum mainnet\"},{\"id\":56,\"name\":\"BNB Chain\"},{\"id\":4663,\"name\":\"Robinhood Chain\"},{\"id\":8453,\"name\":\"Base\"},{\"id\":42161,\"name\":\"Arbitrum One\"}]}"
+    },
+    {
+      "file": "bodies/04-daily-weth-volume-leader.json",
+      "action": "oracle.request",
+      "checkedAt": "2026-10-02T22:08:12.559Z",
+      "attempts": 1,
+      "httpStatus": 200,
+      "input": {
+        "question": "At Ethereum mainnet Uniswap v4 PoolManager 0x000000000004444c5dc75cb358380d2e3de08a90, consider every PoolId whose PoolKey contains WETH 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. For each PoolId, sum the absolute WETH-side amount0 or amount1 from every Swap(bytes32,address,int128,int128,uint160,uint128,uint24) event in the 24-hour block window ending at this request's pinned head. The unit is wei. Which PoolId has the largest sum? Return a bytes32[] containing that one PoolId; break ties by the numerically lowest PoolId, and return [] if no pool qualifies.",
+        "panelSize": 10,
+        "answerType": "bytes32[]",
+        "evidence": "chain",
+        "chainId": 1,
+        "head": 1
+      },
+      "blockers": [],
+      "suggestions": [],
+      "liveResponseBody": "{\"action\":\"oracle.request\",\"request\":{\"v\":1,\"question\":\"At Ethereum mainnet Uniswap v4 PoolManager 0x000000000004444c5dc75cb358380d2e3de08a90, consider every PoolId whose PoolKey contains WETH 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. For each PoolId, sum the absolute WETH-side amount0 or amount1 from every Swap(bytes32,address,int128,int128,uint160,uint128,uint24) event in the 24-hour block window ending at this request's pinned head. The unit is wei. Which PoolId has the largest sum? Return a bytes32[] containing that one PoolId; break ties by the numerically lowest PoolId, and return [] if no pool qualifies.\",\"chainId\":1,\"window\":{\"hours\":24},\"answerType\":\"bytes32[]\",\"evidence\":\"chain\",\"panelSize\":10,\"quorum\":7,\"validForSeconds\":86400,\"head\":1},\"proposed\":{\"answerType\":{\"value\":\"bytes32[]\",\"confidence\":0.27},\"evidence\":{\"value\":\"chain\",\"confidence\":1},\"chainId\":{\"value\":1,\"confidence\":1},\"toleranceBps\":{\"value\":0,\"confidence\":0.56},\"head\":{\"value\":1,\"confidence\":1}},\"judged\":true,\"blockers\":[],\"suggestions\":[],\"online\":528,\"limits\":{\"minPanelSize\":5,\"maxPanelSize\":100},\"chains\":[{\"id\":1,\"name\":\"Ethereum mainnet\"},{\"id\":56,\"name\":\"BNB Chain\"},{\"id\":4663,\"name\":\"Robinhood Chain\"},{\"id\":8453,\"name\":\"Base\"},{\"id\":42161,\"name\":\"Arbitrum One\"}]}"
+    },
+    {
+      "file": "bodies/05-daily-imd-top-pools.json",
+      "action": "oracle.request",
+      "checkedAt": "2026-10-02T22:08:56.501Z",
+      "attempts": 1,
+      "httpStatus": 200,
+      "input": {
+        "question": "Of all Uniswap v4 pools containing IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 on Ethereum mainnet, which three pool IDs (bytes32 values) had the highest IMD trading volume during the 24 hours ending at this request's pinned head block? IMD trading volume is the sum of the absolute IMD amount swapped in every swap in that pool, measured in raw units with 18 decimals. Return pool IDs, not pool contract addresses, ordered by descending volume; break ties by ascending pool ID.",
+        "panelSize": 7,
+        "answerType": "bytes32[]",
+        "evidence": "chain",
+        "chainId": 1,
+        "head": 3
+      },
+      "blockers": [],
+      "suggestions": [],
+      "liveResponseBody": "{\"action\":\"oracle.request\",\"request\":{\"v\":1,\"question\":\"Of all Uniswap v4 pools containing IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 on Ethereum mainnet, which three pool IDs (bytes32 values) had the highest IMD trading volume during the 24 hours ending at this request's pinned head block? IMD trading volume is the sum of the absolute IMD amount swapped in every swap in that pool, measured in raw units with 18 decimals. Return pool IDs, not pool contract addresses, ordered by descending volume; break ties by ascending pool ID.\",\"chainId\":1,\"window\":{\"hours\":24},\"answerType\":\"bytes32[]\",\"evidence\":\"chain\",\"panelSize\":7,\"quorum\":5,\"validForSeconds\":86400,\"head\":3},\"proposed\":{\"answerType\":{\"value\":\"bytes32[]\",\"confidence\":0.42},\"evidence\":{\"value\":\"chain\",\"confidence\":1},\"chainId\":{\"value\":1,\"confidence\":1},\"toleranceBps\":{\"value\":0,\"confidence\":0.46},\"head\":{\"value\":3,\"confidence\":1}},\"judged\":true,\"blockers\":[],\"suggestions\":[],\"online\":541,\"limits\":{\"minPanelSize\":5,\"maxPanelSize\":100},\"chains\":[{\"id\":1,\"name\":\"Ethereum mainnet\"},{\"id\":56,\"name\":\"BNB Chain\"},{\"id\":4663,\"name\":\"Robinhood Chain\"},{\"id\":8453,\"name\":\"Base\"},{\"id\":42161,\"name\":\"Arbitrum One\"}]}"
+    },
+    {
+      "file": "bodies/06-daily-geth-release.json",
+      "action": "oracle.request",
+      "checkedAt": "2026-10-02T22:08:18.260Z",
+      "attempts": 1,
+      "httpStatus": 200,
+      "input": {
+        "question": "As of now (the timestamp of this request's pinned Ethereum mainnet head block), did ethereum/go-ethereum publish at least one stable release on its public GitHub Releases page during the previous 24 hours? A stable release has draft=false and prerelease=false and a published_at time in that interval.",
+        "panelSize": 5,
+        "answerType": "bool",
+        "evidence": "panel",
+        "chainId": 1
+      },
+      "blockers": [],
+      "suggestions": [],
+      "liveResponseBody": "{\"action\":\"oracle.request\",\"request\":{\"v\":1,\"question\":\"As of now (the timestamp of this request's pinned Ethereum mainnet head block), did ethereum/go-ethereum publish at least one stable release on its public GitHub Releases page during the previous 24 hours? A stable release has draft=false and prerelease=false and a published_at time in that interval.\",\"chainId\":1,\"window\":{\"hours\":24},\"answerType\":\"bool\",\"evidence\":\"panel\",\"panelSize\":5,\"quorum\":4,\"validForSeconds\":86400},\"proposed\":{\"answerType\":{\"value\":\"bool\",\"confidence\":1},\"evidence\":{\"value\":\"panel\",\"confidence\":0.98},\"chainId\":{\"value\":1,\"confidence\":0.99},\"toleranceBps\":{\"value\":0,\"confidence\":0.86},\"head\":{\"value\":1,\"confidence\":0.96}},\"judged\":true,\"blockers\":[],\"suggestions\":[],\"online\":530,\"limits\":{\"minPanelSize\":5,\"maxPanelSize\":100},\"chains\":[{\"id\":1,\"name\":\"Ethereum mainnet\"},{\"id\":56,\"name\":\"BNB Chain\"},{\"id\":4663,\"name\":\"Robinhood Chain\"},{\"id\":8453,\"name\":\"Base\"},{\"id\":42161,\"name\":\"Arbitrum One\"}]}"
     }
   ]
 }

@@ -5,7 +5,7 @@
   "runs": 7,
   "input": {
     "v": 1,
-    "question": "Did ethereum/go-ethereum publish a non-prerelease GitHub release in the 24 hours before the window's closing block?",
+    "question": "As of now (the timestamp of this request's pinned Ethereum mainnet head block), did ethereum/go-ethereum publish at least one stable release on its public GitHub Releases page during the previous 24 hours? A stable release has draft=false and prerelease=false and a published_at time in that interval.",
     "chainId": 1,
     "window": { "hours": 24 },
     "answerType": "bool",

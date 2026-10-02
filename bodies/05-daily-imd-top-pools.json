@@ -5,7 +5,7 @@
   "runs": 7,
   "input": {
     "v": 1,
-    "question": "Which three Uniswap v4 pools paired with IMD had the most swap volume in the last 24 hours?",
+    "question": "Of all Uniswap v4 pools containing IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 on Ethereum mainnet, which three pool IDs (bytes32 values) had the highest IMD trading volume during the 24 hours ending at this request's pinned head block? IMD trading volume is the sum of the absolute IMD amount swapped in every swap in that pool, measured in raw units with 18 decimals. Return pool IDs, not pool contract addresses, ordered by descending volume; break ties by ascending pool ID.",
     "chainId": 1,
     "window": { "hours": 24 },
     "answerType": "bytes32[]",

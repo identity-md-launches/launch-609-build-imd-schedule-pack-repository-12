@@ -5,7 +5,7 @@
   "runs": 5,
   "input": {
     "v": 1,
-    "question": "How many Transfer logs did the IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 emit over the blocks in the window?",
+    "question": "For the one-hour Ethereum mainnet block window ending at this request's pinned head, how many logs emitted by IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 match Transfer(address indexed from, address indexed to, uint256 value)? Count each matching log once, including zero-value transfers; the answer is 0 if no logs match.",
     "chainId": 1,
     "window": { "hours": 1 },
     "answerType": "uint256",

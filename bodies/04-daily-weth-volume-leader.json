@@ -5,7 +5,7 @@
   "runs": 7,
   "input": {
     "v": 1,
-    "question": "Which Uniswap v4 pool did the most WETH volume in the last day?",
+    "question": "At Ethereum mainnet Uniswap v4 PoolManager 0x000000000004444c5dc75cb358380d2e3de08a90, consider every PoolId whose PoolKey contains WETH 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. For each PoolId, sum the absolute WETH-side amount0 or amount1 from every Swap(bytes32,address,int128,int128,uint160,uint128,uint24) event in the 24-hour block window ending at this request's pinned head. The unit is wei. Which PoolId has the largest sum? Return a bytes32[] containing that one PoolId; break ties by the numerically lowest PoolId, and return [] if no pool qualifies.",
     "chainId": 1,
     "window": { "hours": 24 },
     "answerType": "bytes32[]",

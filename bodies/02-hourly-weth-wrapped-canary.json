@@ -5,7 +5,7 @@
   "runs": 7,
   "input": {
     "v": 1,
-    "question": "What is the sum of the wad argument of Deposit logs emitted by WETH 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2, in wei, over the blocks in the window?",
+    "question": "During the 60 minutes ending at this request's pinned Ethereum mainnet head block, how many wei of ETH were deposited into WETH contract 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2? Compute the total by summing the wad amount in every Deposit event emitted by that contract; the answer is zero if no such event was emitted.",
     "chainId": 1,
     "window": { "hours": 1 },
     "answerType": "uint256",

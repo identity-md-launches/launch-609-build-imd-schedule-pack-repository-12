@@ -5,7 +5,7 @@
   "runs": 7,
   "input": {
     "v": 1,
-    "question": "What is the sum of the value argument of Transfer logs emitted by the IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 with to equal to 0x0000000000000000000000000000000000000000, in base units, over the blocks in the window?",
+    "question": "In the one-hour Ethereum mainnet block window ending at this request's pinned head, what is the sum, in raw IMD base units (18 decimals), of the value field in Transfer logs emitted by token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 whose to address is 0x0000000000000000000000000000000000000000?",
     "chainId": 1,
     "window": { "hours": 1 },
     "answerType": "uint256",

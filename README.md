@@ -75,9 +75,11 @@ All of these come from the IMD docs, and `npm run validate` checks them locally:
   `answerType`, `panelSize` 5 to 100, `quorum` 2 to `panelSize`, `validForSeconds` 60 to 2,592,000.
   A relative `window` is re-resolved before every run, so `{hours: 1}` is always the last hour.
 
-The server applies the same checks as one paid `oracle.request` or `job.open`, plus some
-this script cannot (for example the wording screen that refuses ambiguous questions). Its
-verdict is the one that counts.
+The `schedule.create` check reports whether the schedule is accepted and what it would cost.
+It does not run the standalone `oracle.request` wording and answerability screen for an oracle
+question nested inside a schedule. An accepted schedule check therefore does not mean its
+question passed that separate screen; `results.json` records both checks for the six oracle
+bodies.
 
 ## Running the check
 
@@ -97,7 +99,8 @@ error, a 30 second timeout, a 429 or a 5xx is retried up to 3 times (4 attempts 
 at least 3 seconds apart. Bodies are sent about 2 seconds apart to stay under the API's
 30 checks a minute.
 
-`results.json` holds one entry per body:
+`results.json` holds one `schedule.create` result per body in `results`, plus standalone
+`oracle.request` draft checks for bodies 01-06 in `oracleDraftChecks`:
 
 | Field | Meaning |
 |---|---|
@@ -109,9 +112,13 @@ at least 3 seconds apart. Bodies are sent about 2 seconds apart to stay under th
 | `amountMatchesTable` | `true` when `amount` equals `runs x 0.5 IMD`, the figure in the table above |
 | `localProblems` | Anything `npm run validate` objected to |
 
+Each `oracleDraftChecks` entry records the short draft input, HTTP status, blockers,
+suggestions, and raw live response body.
+
 The top level records the API used, the time of the run, `network` (`reached`, or
 `unreachable` when no body got an answer) and a count of each verdict. The committed
-`results.json` is from a run on 2026-10-02 in which all 12 bodies were accepted.
+`results.json` contains accepted live `schedule.create` checks for all 12 bodies and draft
+checks for all six oracle questions with no `wording` or `not_answerable` suggestions.
 
 The script exits 1 when a body fails local validation or the API blocks or refuses one, and
 0 otherwise. An unreachable network alone does not fail it, because that is recorded in

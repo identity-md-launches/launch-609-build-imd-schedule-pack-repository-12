@@ -1,0 +1,20 @@
+{
+  "label": "daily top three IMD Uniswap v4 pools by volume",
+  "action": "oracle.request",
+  "cadence": { "cron": "30 9 * * *", "tz": "UTC" },
+  "runs": 7,
+  "input": {
+    "v": 1,
+    "question": "Which three Uniswap v4 pools paired with IMD had the most swap volume in the last 24 hours?",
+    "chainId": 1,
+    "window": { "hours": 24 },
+    "answerType": "bytes32[]",
+    "evidence": "chain",
+    "head": 3,
+    "panelSize": 7,
+    "quorum": 5,
+    "validForSeconds": 86400,
+    "definitions": { "volume": "IMD, the absolute swapped amount on the IMD side, IMD being 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7" },
+    "guards": { "deny": ["0x0000000000000000000000000000000000000000000000000000000000000000"] }
+  }
+}

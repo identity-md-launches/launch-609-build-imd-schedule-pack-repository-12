@@ -1,0 +1,24 @@
+{
+  "label": "hourly canary: ETH wrapped into WETH on Ethereum mainnet",
+  "action": "oracle.request",
+  "cadence": { "every": "PT1H" },
+  "runs": 7,
+  "input": {
+    "v": 1,
+    "question": "What is the sum of the wad argument of Deposit logs emitted by WETH 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2, in wei, over the blocks in the window?",
+    "chainId": 1,
+    "window": { "hours": 1 },
+    "answerType": "uint256",
+    "evidence": "chain",
+    "panelSize": 5,
+    "quorum": 5,
+    "toleranceBps": 0,
+    "validForSeconds": 3600,
+    "definitions": {
+      "event": "Deposit(address indexed dst, uint256 wad) emitted by 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 only, from any depositor.",
+      "unit": "Wei, summed without rounding. No deposits in the window is 0.",
+      "period": "Every block in the pinned window, both ends included."
+    },
+    "guards": { "min": "0" }
+  }
+}

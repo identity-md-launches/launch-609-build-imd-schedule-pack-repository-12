@@ -1,0 +1,14 @@
+{
+  "label": "weekly ERC-8004 agent ecosystem digest",
+  "action": "job.open",
+  "cadence": { "cron": "0 8 * * 3", "tz": "UTC" },
+  "runs": 7,
+  "continue": true,
+  "input": {
+    "objective": "Update the report with what changed this week around ERC-8004 trustless agents: specification changes, registry deployments, and projects building on it.",
+    "skill": "research-report",
+    "outputs": [ { "name": "report", "path": "artifacts/report.md", "mediaType": "text/markdown" } ],
+    "minCitations": 5,
+    "github": false
+  }
+}

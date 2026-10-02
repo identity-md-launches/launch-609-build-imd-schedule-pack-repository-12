@@ -1,0 +1,15 @@
+{
+  "name": "imd-schedule-pack",
+  "version": "0.1.0",
+  "description": "Experimental: 12 ready-to-use schedule.create bodies for the IMD swarm, and a checker for them.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "bin": { "imd-schedule-check": "bin/check.mjs" },
+  "scripts": {
+    "validate": "node bin/check.mjs --validate",
+    "check": "node bin/check.mjs",
+    "table": "node bin/check.mjs --table"
+  }
+}

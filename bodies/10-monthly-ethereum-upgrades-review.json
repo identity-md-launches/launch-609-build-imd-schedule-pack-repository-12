@@ -1,0 +1,14 @@
+{
+  "label": "monthly Ethereum protocol upgrades review",
+  "action": "job.open",
+  "cadence": { "cron": "0 9 1 * *", "tz": "UTC" },
+  "runs": 3,
+  "continue": true,
+  "input": {
+    "objective": "Update the review with last month's progress on Ethereum protocol upgrades: EIPs that moved status, testnet forks, client releases and scheduled mainnet dates.",
+    "skill": "research-report",
+    "outputs": [ { "name": "report", "path": "artifacts/report.md", "mediaType": "text/markdown" } ],
+    "minCitations": 5,
+    "github": false
+  }
+}

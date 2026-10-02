@@ -1,0 +1,25 @@
+{
+  "label": "hourly canary: IMD burned on Ethereum mainnet",
+  "action": "oracle.request",
+  "cadence": { "every": "PT1H" },
+  "runs": 7,
+  "input": {
+    "v": 1,
+    "question": "What is the sum of the value argument of Transfer logs emitted by the IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 with to equal to 0x0000000000000000000000000000000000000000, in base units, over the blocks in the window?",
+    "chainId": 1,
+    "window": { "hours": 1 },
+    "answerType": "uint256",
+    "evidence": "chain",
+    "panelSize": 5,
+    "quorum": 5,
+    "toleranceBps": 0,
+    "validForSeconds": 3600,
+    "definitions": {
+      "event": "Transfer(address indexed from, address indexed to, uint256 value) emitted by 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 only.",
+      "burn": "A Transfer log whose to is 0x0000000000000000000000000000000000000000, from any sender.",
+      "unit": "Raw base units (18 decimals), summed without rounding. No burns in the window is 0.",
+      "period": "Every block in the pinned window, both ends included."
+    },
+    "guards": { "min": "0", "max": "10000000000000000000000000" }
+  }
+}

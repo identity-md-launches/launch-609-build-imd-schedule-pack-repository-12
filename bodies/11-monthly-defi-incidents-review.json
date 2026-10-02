@@ -1,0 +1,14 @@
+{
+  "label": "monthly DeFi security incidents review",
+  "action": "job.open",
+  "cadence": { "cron": "0 9 2 * *", "tz": "UTC" },
+  "runs": 3,
+  "continue": false,
+  "input": {
+    "objective": "Write a review of the DeFi security incidents publicly reported last month: what was exploited, the root cause where one was published, losses, and recoveries.",
+    "skill": "research-report",
+    "outputs": [ { "name": "report", "path": "artifacts/report.md", "mediaType": "text/markdown" } ],
+    "minCitations": 5,
+    "github": false
+  }
+}

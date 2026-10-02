@@ -1,0 +1,19 @@
+{
+  "label": "daily WETH volume leader",
+  "action": "oracle.request",
+  "cadence": { "cron": "0 9 * * *", "tz": "UTC" },
+  "runs": 7,
+  "input": {
+    "v": 1,
+    "question": "Which Uniswap v4 pool did the most WETH volume in the last day?",
+    "chainId": 1,
+    "window": { "hours": 24 },
+    "answerType": "bytes32[]",
+    "evidence": "chain",
+    "head": 1,
+    "definitions": { "denomination": "WETH, the absolute swapped amount on the WETH side" },
+    "panelSize": 10,
+    "quorum": 8,
+    "validForSeconds": 86400
+  }
+}

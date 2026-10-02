@@ -1,0 +1,14 @@
+{
+  "label": "weekly Uniswap v4 hooks digest",
+  "action": "job.open",
+  "cadence": { "cron": "0 8 * * 2", "tz": "UTC" },
+  "runs": 7,
+  "continue": true,
+  "input": {
+    "objective": "Update the report with what changed this week in the Uniswap v4 hook ecosystem: new hooks deployed or announced, audits published, and incidents involving hooks.",
+    "skill": "research-report",
+    "outputs": [ { "name": "report", "path": "artifacts/report.md", "mediaType": "text/markdown" } ],
+    "minCitations": 5,
+    "github": false
+  }
+}

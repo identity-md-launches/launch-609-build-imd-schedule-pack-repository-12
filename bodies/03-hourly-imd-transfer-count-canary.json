@@ -1,0 +1,24 @@
+{
+  "label": "hourly canary: IMD transfer count on Ethereum mainnet",
+  "action": "oracle.request",
+  "cadence": { "every": "PT1H" },
+  "runs": 5,
+  "input": {
+    "v": 1,
+    "question": "How many Transfer logs did the IMD token 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 emit over the blocks in the window?",
+    "chainId": 1,
+    "window": { "hours": 1 },
+    "answerType": "uint256",
+    "evidence": "chain",
+    "panelSize": 5,
+    "quorum": 5,
+    "toleranceBps": 0,
+    "validForSeconds": 3600,
+    "definitions": {
+      "event": "Transfer(address indexed from, address indexed to, uint256 value) emitted by 0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 only.",
+      "count": "One per log, including mints, burns and zero-value transfers. No logs in the window is 0.",
+      "period": "Every block in the pinned window, both ends included."
+    },
+    "guards": { "min": "0" }
+  }
+}

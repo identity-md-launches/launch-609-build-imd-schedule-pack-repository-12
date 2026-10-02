@@ -1,0 +1,23 @@
+{
+  "label": "daily: did go-ethereum ship a stable release",
+  "action": "oracle.request",
+  "cadence": { "cron": "0 12 * * *", "tz": "UTC" },
+  "runs": 7,
+  "input": {
+    "v": 1,
+    "question": "Did ethereum/go-ethereum publish a non-prerelease GitHub release in the 24 hours before the window's closing block?",
+    "chainId": 1,
+    "window": { "hours": 24 },
+    "answerType": "bool",
+    "evidence": "panel",
+    "panelSize": 5,
+    "quorum": 4,
+    "validForSeconds": 86400,
+    "definitions": {
+      "project": "Use https://github.com/ethereum/go-ethereum/releases and release published_at timestamps. Exclude drafts and prereleases.",
+      "calendar": "The 24 hours ending at the timestamp of the window's closing block. Blocks are used only to fix that time.",
+      "missing": "Unavailable historical evidence is not false. Report inability rather than guessing."
+    },
+    "guards": { "sources": ["https://github.com/ethereum/go-ethereum/"], "minSources": 1 }
+  }
+}

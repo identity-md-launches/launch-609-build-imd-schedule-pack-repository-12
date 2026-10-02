@@ -1,0 +1,14 @@
+{
+  "label": "monthly on-chain oracle design review",
+  "action": "job.open",
+  "cadence": { "cron": "0 9 3 * *", "tz": "UTC" },
+  "runs": 3,
+  "continue": false,
+  "input": {
+    "objective": "Write a review of last month's developments in on-chain oracle design: new oracle networks or versions, published manipulation incidents, and changes in how protocols consume prices.",
+    "skill": "research-report",
+    "outputs": [ { "name": "report", "path": "artifacts/report.md", "mediaType": "text/markdown" } ],
+    "minCitations": 5,
+    "github": false
+  }
+}
